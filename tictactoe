@@ -1,0 +1,48 @@
+# Tic Tac Toe
+
+# Create the board
+board = [' ' for _ in range(9)]
+
+# Define winning combinations
+winning_combinations = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8],  # rows
+    [0, 3, 6], [1, 4, 7], [2, 5, 8],  # columns
+    [0, 4, 8], [2, 4, 6]  # diagonals
+]
+
+# Function to print the board
+def print_board():
+    print('-------------')
+    for i in range(3):
+        print(f'| {board[i * 3]} | {board[i * 3 + 1]} | {board[i * 3 + 2]} |')
+        print('-------------')
+
+# Function to check if a player has won
+def check_win(player):
+    for combo in winning_combinations:
+        if all(board[i] == player for i in combo):
+            return True
+    return False
+
+# Function to play the game
+def play_game():
+    current_player = 'X'
+    while True:
+        print_board()
+        position = int(input(f"Player {current_player}, enter a position (1-9): ")) - 1
+        if position < 0 or position >= 9 or board[position] != ' ':
+            print('Invalid move. Try again.')
+            continue
+        board[position] = current_player
+        if check_win(current_player):
+            print_board()
+            print(f"Player {current_player} wins!")
+            break
+        if ' ' not in board:
+            print_board()
+            print("It's a tie!")
+            break
+        current_player = 'O' if current_player == 'X' else 'X'
+
+# Start the game
+play_game()
