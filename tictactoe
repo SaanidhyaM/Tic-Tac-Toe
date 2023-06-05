@@ -1,7 +1,7 @@
 # Tic Tac Toe
 
-# Create the board
-board = [' ' for _ in range(9)]
+# Create the grid
+grid = [' ' for _ in range(9)]
 
 # Define winning combinations
 winning_combinations = [
@@ -16,17 +16,17 @@ for i in range(3):
     print('-------------')
 print("Use the numbers in the grid as reference to enter your move.\n")
 
-# Function to print the board
-def print_board():
+# Function to print the grid
+def print_grid():
     print('-------------')
     for i in range(3):
-        print(f'| {board[i * 3]} | {board[i * 3 + 1]} | {board[i * 3 + 2]} |')
+        print(f'| {grid[i * 3]} | {grid[i * 3 + 1]} | {grid[i * 3 + 2]} |')
         print('-------------')
 
 # Function to check if a player has won
 def check_win(player):
     for combo in winning_combinations:
-        if all(board[i] == player for i in combo):
+        if all(grid[i] == player for i in combo):
             return True
     return False
 
@@ -34,18 +34,18 @@ def check_win(player):
 def play_game():
     current_player = 'X'
     while True:
-        print_board()
+        print_grid()
         position = int(input(f"Player {current_player}, enter a position (1-9): ")) - 1
-        if position < 0 or position >= 9 or board[position] != ' ':
+        if position < 0 or position >= 9 or grid[position] != ' ':
             print('Invalid move. Try again.')
             continue
-        board[position] = current_player
+        grid[position] = current_player
         if check_win(current_player):
-            print_board()
+            print_grid()
             print(f"Player {current_player} wins!")
             break
-        if ' ' not in board:
-            print_board()
+        if ' ' not in grid:
+            print_grid()
             print("It's a tie!")
             break
         current_player = 'O' if current_player == 'X' else 'X'
