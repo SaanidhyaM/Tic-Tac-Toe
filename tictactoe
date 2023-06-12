@@ -52,3 +52,14 @@ def play_game():
 
 # Start the game
 play_game()
+symbol = "*"
+heart = [
+            "  " + symbol + symbol + " " + symbol + symbol + "  ",
+            symbol + "     " + symbol,
+            symbol + "       " + symbol,
+            symbol + "       " + symbol,
+            "  " + symbol + "   " + symbol,
+            "    " + symbol
+]
+for line in heart:
+            print(line)
